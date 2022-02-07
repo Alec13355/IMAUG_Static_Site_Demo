@@ -25,7 +25,7 @@ jobs:
 #           template: ./azure-bicep-deploy.bicep
 
         # output containerName variable from template
-      - run: echo ${{ steps.deploy.outputs.containerName }}
+#       - run: echo ${{ steps.deploy.outputs.containerName }}
       
       # Azure logout 
       - name: logout
