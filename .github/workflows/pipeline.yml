@@ -23,9 +23,6 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG_BICEP }}
           template: ./deploy.bicep
-
-        # output containerName variable from template
-#       - run: echo ${{ steps.deploy.outputs.containerName }}
       
       # Azure logout 
       - name: logout
