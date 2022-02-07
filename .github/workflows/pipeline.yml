@@ -17,15 +17,15 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Run Bicep deploy
-        uses: azure/arm-deploy@v1
-        with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-          resourceGroupName: ${{ secrets.AZURE_RG_BICEP }}
-          template: ./azure-bicep-deploy.bicep
+      # - name: Run Bicep deploy
+      #   uses: azure/arm-deploy@v1
+      #   with:
+      #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+      #     resourceGroupName: ${{ secrets.AZURE_RG_BICEP }}
+      #     template: ./azure-bicep-deploy.bicep
 
-        # output containerName variable from template
-      - run: echo ${{ steps.deploy.outputs.containerName }}
+      #   # output containerName variable from template
+      # - run: echo ${{ steps.deploy.outputs.containerName }}
       
       # Azure logout 
       - name: logout
