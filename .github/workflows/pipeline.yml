@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Log into Azure
+      # Log into Azure 
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -23,9 +23,6 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG_BICEP }}
           template: ./deploy.bicep
-
-        # output containerName variable from template
-#       - run: echo ${{ steps.deploy.outputs.containerName }}
       
       # Azure logout 
       - name: logout
