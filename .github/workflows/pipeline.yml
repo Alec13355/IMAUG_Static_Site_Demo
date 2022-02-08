@@ -25,8 +25,6 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RG_BICEP }}
           template: ./deploy.bicep
       
-      - run: echo ${{ steps.deploy.outputs.deployment_token }}
-
       - name: Build And Deploy
         uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9
         with:
@@ -34,7 +32,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "./angular-tour-of-heroes"
-          app_artifact_location: "build"
+          app_artifact_location: "dist/angular-tour-of-heroes"
 
       # Azure logout 
       - name: logout
