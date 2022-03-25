@@ -1,6 +1,8 @@
+param location string = resourceGroup().location
+
 resource staticSite 'Microsoft.Web/staticSites@2020-12-01' = {
   name: 'testSite'
-  location: resourceGroup().location
+  location: location
   properties: {}
   sku: {
     tier: 'Free'
