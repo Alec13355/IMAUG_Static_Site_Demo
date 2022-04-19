@@ -10,5 +10,6 @@ resource staticSite 'Microsoft.Web/staticSites@2020-12-01' = {
   }
 }
 
+
 #disable-next-line outputs-should-not-contain-secrets
 output deployment_token string = listSecrets(staticSite.id, staticSite.apiVersion).properties.apiKey
