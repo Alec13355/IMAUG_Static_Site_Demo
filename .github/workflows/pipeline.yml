@@ -1,26 +1,19 @@
-name: Node.js CI
-
-
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
-
+  build_and_run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Log into Azure
       - uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Azure CLI script
         uses: azure/CLI@v1
-        with:
+        with: 
           inlineScript: |
             az staticwebapp disconnect -n testSite
 
@@ -31,17 +24,16 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG_BICEP }}
           template: ./deploy.bicep
-      
-      - name: Build And Deploy
-        uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9
+
+      - name: Build and Deploy
+        uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ steps.deploy.outputs.deployment_token }}
+          azure_static_web_apps_api_token: ${{ steps.deploy.deployment_token }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "./angular-tour-of-heroes"
           app_artifact_location: "dist/angular-tour-of-heroes"
 
-      # Azure logout 
-      - name: logout
+      -name: logout
         run: |
           az logout
