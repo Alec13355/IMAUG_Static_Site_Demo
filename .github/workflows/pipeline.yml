@@ -16,11 +16,12 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Azure CLI script
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az staticwebapp disconnect -n testSite
+#       - name: Azure CLI script
+#         uses: azure/CLI@v1
+#         with:
+#           inlineScript: |
+#             az staticwebapp disconnect -n testSite
+            
       - name: Run Bicep deploy
         id: deploy
         uses: azure/arm-deploy@v1
