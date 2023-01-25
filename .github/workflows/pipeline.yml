@@ -26,7 +26,6 @@ jobs:
       #   uses: azure/CLI@v1
       #   with:
       #     inlineScript: |
-      #
       #       az staticwebapp disconnect -n testSite
 
       - name: Run Bicep deploy
