@@ -16,10 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Log into Azure
-      - name: "Az CLI login"
+      - name: Login via Az module
         uses: azure/login@v1
         with:
-          credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+          enable-AzPSSession: true 
 
       - name: Azure CLI script
         uses: azure/CLI@v1
