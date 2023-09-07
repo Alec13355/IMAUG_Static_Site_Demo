@@ -1,4 +1,4 @@
-param location string = resourceGroup().location
+param location string = "westus2"
 
 resource staticSite 'Microsoft.Web/staticSites@2022-03-01' = {
   name: 'testSite'
