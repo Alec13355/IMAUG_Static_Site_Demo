@@ -36,6 +36,7 @@ jobs:
           resourceGroupName: testDeploySS
           template: ./deploy.bicep
           additionalArguments: "--debug"
+          failOnStdErr: false
 
       - name: Build And Deploy
         uses: Azure/static-web-apps-deploy@v1
