@@ -22,18 +22,18 @@ jobs:
           creds: ${{secrets.AZURE_CREDENTIALS}}
           enable-AzPSSession: true 
 
-      - name: Azure CLI script
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az staticwebapp disconnect -n testSite
+      # - name: Azure CLI script
+      #   uses: azure/CLI@v1
+      #   with:
+      #     inlineScript: |
+      #       az staticwebapp disconnect -n testSite
 
       - name: Run Bicep deploy
         id: deploy
         uses: azure/arm-deploy@v1
         with:
           credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          resourceGroupName: ${{ secrets.AZURE_RG_BICEP }}
+          resourceGroupName: testDeploySS
           template: ./deploy.bicep
           additionalArguments: "--debug"
 
