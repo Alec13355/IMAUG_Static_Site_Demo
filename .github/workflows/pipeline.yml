@@ -32,4 +32,16 @@ jobs:
           additionalArguments: "--debug"
           failOnStdErr: false
 
-      
+      - name: Build And Deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ steps.deploy.outputs.deployment_token }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "./angular-tour-of-heroes"
+          app_artifact_location: "dist/angular-tour-of-heroes"
+          
+      # Azure logout
+      - name: logout
+        run: |
+          az logout
