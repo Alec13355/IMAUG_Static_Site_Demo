@@ -25,7 +25,7 @@ jobs:
   
       - uses: azure/arm-deploy@v1
         with:
-          resourceGroupName: github-action-arm-rg
+          resourceGroupName: nebcoderesoucegroup
           template: ./deploy.bicep
           additionalArguments: "--what-if --rollback-on-error --what-if-exclude-change-types Create Ignore"
       
