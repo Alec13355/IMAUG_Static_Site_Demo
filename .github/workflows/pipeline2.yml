@@ -6,27 +6,28 @@ on:
   pull_request:
     branches: [main]
 
+
 permissions:
       id-token: write
       contents: read
 
-jobs: 
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Login to Azure 
+      # Log into Azure
+      - name: Login via Az module
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
 
       - name: Run Bicep deploy
         id: deploy
         uses: azure/arm-deploy@v1
         with:
           credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          resourceGroupName: nebcoderesoucegroup
+          resourceGroupName: ugtestfordenver
           template: ./deploy.bicep
           failOnStdErr: false
 
@@ -39,6 +40,7 @@ jobs:
           app_location: "./angular-tour-of-heroes"
           app_artifact_location: "dist/angular-tour-of-heroes"
 
+      # Azure logout
       - name: logout
         run: |
           az logout
